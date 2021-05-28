@@ -28,13 +28,21 @@ class MR:
     def MR_to_num(self):
         return self.MR(self.T, 1)
 
-    def MR(self, A:int, B:int):
+    def MR(self, A:int, B:int, debug=False):
         # k bit Montgomery multiplication
+        if debug:
+            print(f"[*] {A = :#x}")
+            print(f"[*] {B = :#x}")
         S = 0
         for i in range(self.block_num):
             bi = (B >> (self.k*i)) & (self.Q-1)
             q = (((S + bi*A) & (self.Q-1)) * self.N_inv) & (self.Q-1)
             S = (S + q*self.N + bi*A) >> self.k
+            if debug:
+                print(f"[*] block {i}/{self.block_num}")
+                print(f"    {bi = :#x}")
+                print(f"    {q = :#x}")
+                print(f"    {S = :#x}")
         return S
 
     def pow(self, k:int):
