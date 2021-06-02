@@ -1,0 +1,2 @@
+main.o: main.cpp param.hpp
+sub.o: sub.cpp param.hpp
