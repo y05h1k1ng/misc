@@ -74,6 +74,9 @@ if __name__=="__main__":
     u = -(2**62 + 2**55 + 1)
     N = 36*pow(u, 4) + 36*pow(u, 3) + 24*pow(u, 2) + 6*u + 1
 
+    print(hex(MR(256, N, 32).MR(2, 3, debug=True)))
+    exit()
+
     A = MR(256, N, 128).num_to_MR(2)
     B = MR(256, N, 128).num_to_MR(3)
     C = A * B
